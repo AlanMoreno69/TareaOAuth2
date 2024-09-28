@@ -1,6 +1,7 @@
 const express = require('express');
 const session = require("express-session");
 const passport = require('passport');
+const protectedRoutes = require('./routes');
 
 require('./auth');
 
@@ -43,5 +44,7 @@ app.get('/logout', (req, res, next) => {
         res.send('ChaoBye');
     });
 });
+
+app.use('/api', protectedRoutes);
 
 app.listen(3000, () => console.log('Listening on: 3000'));
