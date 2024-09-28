@@ -7,7 +7,12 @@ function isLoggedIn(req, res, next) {
 
 
 //Aqui va la funcion GET
-
+router.get('/data', isLoggedIn, (req, res) => {
+    res.json({
+        message: "Accediste a los datos",
+        user: req.user,  
+    });
+});
 
 
 //Aqui va la funcion POST
