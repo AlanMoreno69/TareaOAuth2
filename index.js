@@ -13,6 +13,8 @@ const app = express();
 app.use(session({ secret: 'cats' }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
     res.send('<a href="/auth/google">Authenticate with Google</a>');
