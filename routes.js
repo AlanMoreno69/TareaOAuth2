@@ -17,5 +17,11 @@ router.get('/data', isLoggedIn, (req, res) => {
 
 //Aqui va la funcion POST
 
+//Mediante la función isLoggedIn se valida las credenciales del usuario
+//y usando el metodo post se envian mediante un json los datos de un nombre y email
+app.post('/data', isLoggedIn, (req, res) => {
+    const { name, email } = req.body; //guarda los datos del body que manda el cliente
+    res.send(`Recibido: Nombre: ${name}, Correo: ${email}`);//respuesta del servidor con el nombre y el correo
+})
 
 module.exports = router;
