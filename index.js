@@ -46,9 +46,12 @@ app.get('/logout', (req, res, next) => {
     });
 });
 
+
+//Mediante la función isLoggedIn se valida las credenciales del usuario
+//y usando el metodo post se envian mediante un json los datos de un nombre y email
 app.post('/data', isLoggedIn, (req, res) => {
     const { name, email } = req.body; 
-    res.send(`Recibido: Nombre: ${name}, Correo: ${email}`);
+    res.send(`Recibido: Nombre: ${name}, Correo: ${email}`);//respuesta del servidor
 })
 
 app.listen(3000, () => console.log('Listening on: 3000'));
