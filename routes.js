@@ -1,16 +1,20 @@
 const express = require('express');
 const router = express.Router();
 
+// Middleware para verificar si el usuario está autenticado
 function isLoggedIn(req, res, next) {
-    req.user ? next() : res.sendStatus(401);
+    // Si el usuario está autenticado (req.user está definido), continuar con la siguiente función de middleware
+    req.user ? next() : res.sendStatus(401); // Si no está autenticado, devolver un estado 401 (No autorizado)
 }
 
-
 //Aqui va la funcion GET
+
+// Definición de la ruta GET para '/data'
 router.get('/data', isLoggedIn, (req, res) => {
+    // Si el usuario está autenticado, se envía una respuesta JSON
     res.json({
-        message: "Accediste a los datos",
-        user: req.user,  
+        message: "Accediste a los datos", // Mensaje de éxito
+        user: req.user,  // Información del usuario autenticado
     });
 });
 
