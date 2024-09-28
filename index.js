@@ -12,6 +12,8 @@ const app = express();
 app.use(session({ secret: 'cats' }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
     res.send('<a href="/auth/google">Authenticate with Google</a>');
@@ -43,5 +45,10 @@ app.get('/logout', (req, res, next) => {
         res.send('ChaoBye');
     });
 });
+
+app.post('/data', isLoggedIn, (req, res) => {
+    const { name, email } = req.body; 
+    res.send(`Recibido: Nombre: ${name}, Correo: ${email}`);
+})
 
 app.listen(3000, () => console.log('Listening on: 3000'));
